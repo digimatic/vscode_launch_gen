@@ -12,11 +12,12 @@ impl ConfigProvider for PythonConfigProvider {
     fn get_config(&self, _params: Option<&str>) -> Value {
         json!({
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "args": []
         })
     }
 
@@ -35,11 +36,12 @@ impl ConfigProvider for PythonModuleConfigProvider {
         let module_name = params.unwrap_or("app");
         json!({
             "name": format!("Python: Module {}", module_name),
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": module_name,
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "args": []
         })
     }
 
